@@ -110,6 +110,7 @@ int main(){
             if(j==0){
 
                     i=0;
+                            //Diagonals
 
                             if(board[0][0]==board[1][1] && board[2][2]=='-' && i==0 && board[0][0]!='-')
                             {
@@ -232,6 +233,69 @@ int main(){
 
                             }
 
+                            //Rows, seperated
+
+                             if(board[0][0]==board[0][2] && board[0][1]=='-' && i==0 && board[0][0]!='-')
+                            {
+                                board[0][1]='O';
+                                i=1;
+
+                            }
+
+                            if(board[1][0]==board[1][2] && board[1][1]=='-' && i==0 && board[1][0]!='-')
+                            {
+                                board[1][1]='O';
+                                i=1;
+
+                            }
+
+                            if(board[2][0]==board[2][2] && board[2][1]=='-' && i==0 && board[2][0]!='-')
+                            {
+                                board[2][1]='O';
+                                i=1;
+
+                            }
+
+                            //Columns, seperated
+
+                            if(board[0][0]==board[2][0] && board[1][0]=='-' && i==0 && board[0][0]!='-')
+                            {
+                                board[1][0]='O';
+                                i=1;
+
+                            }
+
+                            if(board[0][1]==board[2][1] && board[1][1]=='-' && i==0 && board[0][1]!='-')
+                            {
+                                board[1][1]='O';
+                                i=1;
+
+
+                            }
+
+                            if(board[0][2]==board[2][2] && board[1][2]=='-' && i==0 && board[0][2]!='-')
+                            {
+                                board[1][2]='O';
+                                i=1;
+
+                            }
+
+                            //Diagonals, seperated
+
+                            if(board[0][0]==board[2][2] && board[1][1]=='-' && i==0 && board[0][0]!='-')
+                            {
+                                board[1][1]='O';
+                                i=1;
+
+                            }
+
+                            if(board[0][2]==board[2][0] && board[1][1]=='-' && i==0 && board[0][2]!='-')
+                            {
+                                board[1][1]='O';
+                                i=1;
+
+                            }
+
                         if(i==0)
                         {
 
@@ -315,4 +379,3 @@ int main(){
     }while(playAgain=='y');
 
 }
-
