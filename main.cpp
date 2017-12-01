@@ -4,7 +4,12 @@
 
 using namespace std;
 
-int r,c,a,i,j,k,l;
+int a,l;
+int row;
+int column;
+bool win_check;
+bool game_continue_loop;
+int valid_selection_loop;
 
 char playAgain;
 char board[3][3];
@@ -37,9 +42,9 @@ int main()
             do
             {
 
-                i=0;
-                j=0;
-                k=0;
+                valid_selection_loop=0;
+                game_continue_loop=false;
+                win_check=false;
                 l=0;
 
                 cout << endl;
@@ -50,24 +55,23 @@ int main()
 
                 cout << "Row";
 
-                cin >> r;
+                cin >> row;
 
                 cout << "Column";
 
-                cin >> c;
-
+                cin >> column;
                 cout << endl;
                 cout << endl;
 
-                r--;
-                c--;
+                row--;
+                column--;
 
 
-                if(board[r][c] == '-')
+                if(board[row][column] == '-')
                 {
 
-                    board[r][c] = 'X';
-                    i=1;
+                    board[row][column] = 'X';
+                    valid_selection_loop=1;
 
                     cout << " |1  2  3|\n";
 
@@ -84,7 +88,7 @@ int main()
                 }
 
             }
-            while(i==0);
+            while(valid_selection_loop==0);
 
             for(a=0; a<3; a++)
             {
@@ -92,13 +96,13 @@ int main()
                         || (board[0][0]==board[1][1] && board[1][1]==board[2][2] && board[0][0] != '-') || (board[2][0]==board[1][1] && board[1][1]==board[0][2] && board[2][0] != '-'))
                 {
 
-                    k=1;
-                    j=1;
+                    win_check=true;
+                    game_continue_loop=true;
 
                 }
             }
 
-            if(k==1)
+            if(win_check==true)
             {
                 cout << "Player 1 (X's) is the winner!" << endl;
                 cout << endl;
@@ -111,219 +115,219 @@ int main()
                 cout << "It's a stalemate!" << endl;
                 cout << endl;
 
-                j=1;
+                game_continue_loop=true;
             }
 
             //Player 2 starts here
 
-            if(j==0)
+            if(game_continue_loop==false)
             {
 
-                i=0;
+                valid_selection_loop=0;
                 //Diagonals
 
-                if(board[0][0]==board[1][1] && board[2][2]=='-' && i==0 && board[0][0]!='-')
+                if(board[0][0]==board[1][1] && board[2][2]=='-' && valid_selection_loop==0 && board[0][0]!='-')
                 {
                     board[2][2]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[1][1]==board[2][2] && board[0][0]=='-' && i==0 && board[1][1]!='-')
+                if(board[1][1]==board[2][2] && board[0][0]=='-' && valid_selection_loop==0 && board[1][1]!='-')
                 {
                     board[0][0]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[0][2]==board[1][1] && board[2][0]=='-' && i==0 && board[0][2]!='-')
+                if(board[0][2]==board[1][1] && board[2][0]=='-' && valid_selection_loop==0 && board[0][2]!='-')
                 {
                     board[2][0]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[1][1]==board[2][0] && board[0][2]=='-' && i==0 && board[1][1]!='-')
+                if(board[1][1]==board[2][0] && board[0][2]=='-' && valid_selection_loop==0 && board[1][1]!='-')
                 {
                     board[0][2]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
                 //3 rows, 1 and 2 places
 
-                if(board[0][0]==board[0][1] && board[0][2]=='-' && i==0 && board[0][0]!='-')
+                if(board[0][0]==board[0][1] && board[0][2]=='-' && valid_selection_loop==0 && board[0][0]!='-')
                 {
                     board[0][2]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[1][0]==board[1][1] && board[1][2]=='-' && i==0 && board[1][0]!='-')
+                if(board[1][0]==board[1][1] && board[1][2]=='-' && valid_selection_loop==0 && board[1][0]!='-')
                 {
                     board[1][2]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[2][0]==board[2][1] && board[2][2]=='-' && i==0 && board[2][0]!='-')
+                if(board[2][0]==board[2][1] && board[2][2]=='-' && valid_selection_loop==0 && board[2][0]!='-')
                 {
                     board[2][2]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
                 //3 rows, 2 and 3 places
 
-                if(board[0][1]==board[0][2] && board[0][0]=='-' && i==0 && board[0][1]!='-')
+                if(board[0][1]==board[0][2] && board[0][0]=='-' && valid_selection_loop==0 && board[0][1]!='-')
                 {
                     board[0][0]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[1][1]==board[1][2] && board[1][0]=='-' && i==0 && board[1][1]!='-')
+                if(board[1][1]==board[1][2] && board[1][0]=='-' && valid_selection_loop==0 && board[1][1]!='-')
                 {
                     board[1][0]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[2][1]==board[2][2] && board[2][0]=='-' && i==0 && board[2][1]!='-')
+                if(board[2][1]==board[2][2] && board[2][0]=='-' && valid_selection_loop==0 && board[2][1]!='-')
                 {
                     board[2][0]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
                 //3 columns, 1 and 2 places
 
-                if(board[0][0]==board[1][0] && board[2][0]=='-' && i==0 && board[0][0]!='-')
+                if(board[0][0]==board[1][0] && board[2][0]=='-' && valid_selection_loop==0 && board[0][0]!='-')
                 {
                     board[2][0]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[0][1]==board[1][1] && board[2][1]=='-' && i==0 && board[0][1]!='-')
+                if(board[0][1]==board[1][1] && board[2][1]=='-' && valid_selection_loop==0 && board[0][1]!='-')
                 {
                     board[2][1]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
 
                 }
 
-                if(board[0][2]==board[1][2] && board[2][2]=='-' && i==0 && board[0][2]!='-')
+                if(board[0][2]==board[1][2] && board[2][2]=='-' && valid_selection_loop==0 && board[0][2]!='-')
                 {
                     board[2][2]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
                 //3 columns, 2 and 3 places
 
-                if(board[1][0]==board[2][0] && board[0][0]=='-' && i==0 && board[1][0]!='-')
+                if(board[1][0]==board[2][0] && board[0][0]=='-' && valid_selection_loop==0 && board[1][0]!='-')
                 {
                     board[0][0]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[1][1]==board[2][1] && board[0][1]=='-' && i==0 && board[1][1]!='-')
+                if(board[1][1]==board[2][1] && board[0][1]=='-' && valid_selection_loop==0 && board[1][1]!='-')
                 {
                     board[0][1]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[1][2]==board[2][2] && board[0][2]=='-' && i==0 && board[1][2]!='-')
+                if(board[1][2]==board[2][2] && board[0][2]=='-' && valid_selection_loop==0 && board[1][2]!='-')
                 {
                     board[0][2]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
                 //Rows, seperated
 
-                if(board[0][0]==board[0][2] && board[0][1]=='-' && i==0 && board[0][0]!='-')
+                if(board[0][0]==board[0][2] && board[0][1]=='-' && valid_selection_loop==0 && board[0][0]!='-')
                 {
                     board[0][1]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[1][0]==board[1][2] && board[1][1]=='-' && i==0 && board[1][0]!='-')
+                if(board[1][0]==board[1][2] && board[1][1]=='-' && valid_selection_loop==0 && board[1][0]!='-')
                 {
                     board[1][1]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[2][0]==board[2][2] && board[2][1]=='-' && i==0 && board[2][0]!='-')
+                if(board[2][0]==board[2][2] && board[2][1]=='-' && valid_selection_loop==0 && board[2][0]!='-')
                 {
                     board[2][1]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
                 //Columns, seperated
 
-                if(board[0][0]==board[2][0] && board[1][0]=='-' && i==0 && board[0][0]!='-')
+                if(board[0][0]==board[2][0] && board[1][0]=='-' && valid_selection_loop==0 && board[0][0]!='-')
                 {
                     board[1][0]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[0][1]==board[2][1] && board[1][1]=='-' && i==0 && board[0][1]!='-')
+                if(board[0][1]==board[2][1] && board[1][1]=='-' && valid_selection_loop==0 && board[0][1]!='-')
                 {
                     board[1][1]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
 
                 }
 
-                if(board[0][2]==board[2][2] && board[1][2]=='-' && i==0 && board[0][2]!='-')
+                if(board[0][2]==board[2][2] && board[1][2]=='-' && valid_selection_loop==0 && board[0][2]!='-')
                 {
                     board[1][2]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
                 //Diagonals, seperated
 
-                if(board[0][0]==board[2][2] && board[1][1]=='-' && i==0 && board[0][0]!='-')
+                if(board[0][0]==board[2][2] && board[1][1]=='-' && valid_selection_loop==0 && board[0][0]!='-')
                 {
                     board[1][1]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(board[0][2]==board[2][0] && board[1][1]=='-' && i==0 && board[0][2]!='-')
+                if(board[0][2]==board[2][0] && board[1][1]=='-' && valid_selection_loop==0 && board[0][2]!='-')
                 {
                     board[1][1]='O';
-                    i=1;
+                    valid_selection_loop=1;
 
                 }
 
-                if(i==0)
+                if(valid_selection_loop==0)
                 {
 
-                    while(i==0)
+                    while(valid_selection_loop==0)
                     {
 
                         srand(time(0));
 
-                        r=(rand() % 3);
+                        row=(rand() % 3);
 
-                        c=(rand() % 3);
+                        column=(rand() % 3);
 
 
-                        if(board[r][c] == '-')
+                        if(board[row][column] == '-')
                         {
 
-                            board[r][c] = 'O';
-                            i=2;
+                            board[row][column] = 'O';
+                            valid_selection_loop=2;
 
                             cout << endl;
                             cout << endl;
@@ -340,7 +344,7 @@ int main()
                 }
 
 
-                if(i==1)
+                if(valid_selection_loop==1)
                 {
                     cout << endl;
                     cout << endl;
@@ -360,13 +364,13 @@ int main()
                             || (board[0][0]==board[1][1] && board[1][1]==board[2][2] && board[0][0] != '-') || (board[2][0]==board[1][1] && board[1][1]==board[0][2] && board[2][0] != '-'))
                     {
 
-                        k=1;
-                        j=1;
+                        win_check=true;
+                        game_continue_loop=true;
 
                     }
                 }
 
-                if(k==1)
+                if(win_check==true)
                 {
                     cout << "Computa' Man (O's) is the winner!" << endl;
                     cout << endl;
@@ -379,12 +383,12 @@ int main()
                     cout << "It's a stalemate!" << endl;
                     cout << endl;
 
-                    j=1;
+                    game_continue_loop=true;
                 }
             }
 
         }
-        while(j==0);
+        while(game_continue_loop==false);
 
         cout << "Would you  like to play again? y/n" << endl;
         cin >> playAgain;
